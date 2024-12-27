@@ -22,5 +22,6 @@ class MyFunctions():
                     print("value x or y is not number")
             else:
                 print(f"In line is different count of values! Expected first line value values count {0}", collumnsCount)
-        return
+        return col1,col2
     
+
