@@ -6,7 +6,7 @@ class MyFunctions():
         return list
     
     # in must be fix for more collumns
-    def GetNumberCollumns(data):
+    def GetCollumns(data):
         col1,col2 = [],[]
         collumnsCount = -1
         for value in data:
@@ -24,4 +24,13 @@ class MyFunctions():
                 print(f"In line is different count of values! Expected first line value values count {0}", collumnsCount)
         return col1,col2
     
-
+    
+    def GetListsList(data):
+        newData = []
+        for value in data:
+            splitedValues = value.split(" ")
+            numbers = []
+            for number in splitedValues:
+                numbers.append(int(number))
+            newData.append(numbers)
+        return newData

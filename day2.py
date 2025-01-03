@@ -1,40 +1,33 @@
 from myFunctions import MyFunctions
 print("start")
-data = MyFunctions.OpenFile("day1_input.txt")
-col1,col2 = MyFunctions.GetNumberCollumns(data)
+data = MyFunctions.OpenFile("day2_input.txt")
+data = MyFunctions.GetListsList(data)
+safeCount = 0 # result
 
-if type(col1) != str or type(col2) != str:
-    col1.sort()
-    col2.sort()
-result=0
+for values in data:
+    state = ""
+    if len(values) > 1:
+        if values[0]-values[1] > 0:
+            state = "decreasing"
+        elif values[0]-values[1] < 0:
+            state = "increasing"
+        else:
+            continue
 
-for value in col1:
-    col2len = len(col2)
-    halfLen = int(col2len/2)
-    halfIndex = halfLen
-    findIndex = -1
-    findCount = 0
-    OccurrenceCount = 0
-    
-    while halfLen > 0 and findIndex < 0:
-       halfLen = int(halfLen/2)
-       if col2[halfIndex] > value:
-           halfIndex = halfIndex - halfLen
-       elif col2[halfIndex] < value:
-            halfIndex = halfIndex + halfLen
-       elif col2[halfIndex] == value:
-           findIndex = halfIndex
-    
-    if  findIndex >=0:
-        lowIndex = findIndex
-        highIndex = findIndex
-        while col2[lowIndex-1] == value and lowIndex > 0:
-            lowIndex -= 1
-        while col2[highIndex+1] == value and highIndex < col2len:
-            highIndex += 1
-        OccurrenceCount = highIndex - lowIndex +1
+        lastIndex = len(values)-1
+        for i in range(0, lastIndex):
+            difference = abs(values[i] - values[i+1])
+            if difference > 3 or difference == 0 :
+                break
 
-    result = result + value * OccurrenceCount
+            if state == "decreasing":
+                if values[i]-values[i+1] < 0:
+                    break
+            elif state == "increasing":
+                if values[i]-values[i+1] > 0:
+                    break
 
-print(result)
-       
+            if i == lastIndex-1:
+                safeCount += 1
+
+print(f"Save reports was found: {safeCount}")
