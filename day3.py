@@ -28,7 +28,8 @@ while iDo < len(doValues)-1 or iDont < len(dontValues)-1:
             startIndex = -1
         if iDont < len(dontValues)-1:
             iDont += 1
-        if iDo == len(doValues)-1 and iDont == len(dontValues)-1 and  startIndex >= 0:
+    if iDo == len(doValues)-1 and iDont == len(dontValues)-1 and  startIndex >= 0:
+            print("I need be here!!!")
             activIntervals.append([startIndex,-1])
 myMulValues = []
 for value in mulValues:
